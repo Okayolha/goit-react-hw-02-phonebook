@@ -1,4 +1,6 @@
 import css from './ContactsList.module.css'
+import PropTypes from 'prop-types';
+
 
 export const Contact = ({ name, number, id, onDeletContact }) => {
     return (
@@ -7,4 +9,11 @@ export const Contact = ({ name, number, id, onDeletContact }) => {
             <button className={css.contact__btn} type="button" onClick={() => onDeletContact(id)}>Delet</button>
         </li>
     )
+}
+
+Contact.propTypes = {
+   name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    onDeletContact: PropTypes.func.isRequired
 }

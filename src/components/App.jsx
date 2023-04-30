@@ -12,22 +12,21 @@ export class App extends Component {
     filter: ''
   }
 
-  formSubmitHandler = (date) => {
-    
-    this.setState(prevState => {
-      const names = []
+ formSubmitHandler = (date) => {
+  const nameExists = this.state.contacts.some(
+    (contact) => contact.name.toLowerCase() === date.name.toLowerCase()
+  );
 
-      prevState.contacts.map(contact => {
-       return names.push(contact.name)
-      })
-
-      if (names.includes(date.name)) {
-        return alert(`${date.name} is already in contacts`)
-      }
-      
-      return { contacts: [date, ...prevState.contacts]}
-    })  
+  if (nameExists) {
+    alert(`${date.name} is already in contacts`);
+    return;
   }
+
+  this.setState(prevState => ({
+    contacts: [date, ...prevState.contacts]
+  }));
+}
+
 
 
   deletContact = (id) => {
